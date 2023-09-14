@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--
+  <?= errorStack ?>
+-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>
+      <?= exception.name ?> - Exception Page
+    </title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;800&display=swap" rel="stylesheet" />
+    <link href="/assets/css/okaidia.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <?= (typeof styleSheet != "undefined" ? styleSheet : "") ?>
+  </head>
+
+  <body>
+    <noscript>
+      <pre><?= errorStack ?></pre>
+    </noscript>
+    <main>
+      <article>
+        <h3 class="exception-constructor">
+          <?= exception.name ?>
+        </h3>
+        <p class="exception-message">
+          <?= exception.message ?>
+        </p>
+
+
+        <div class="stack-trace">
+          <? stack.forEach(function(item) { ?>
+          <div class="stack-trace-line">
+            <span class="ide-container">
+              <a class="open-in-code" href="<?= config.idePrefix ?><?=item.path?>:<?=item.line?>">
+                Open
+              </a>
+            </span>
+            <div>
+              <span>
+                <?= proc.cwd ?>
+                <?= item.path.replace(`${process.cwd()}/`,'') ?> :
+                <?= item.line ?>
+              </span>
+            </div>
+            <div class="fw-bold">
+              <?= item.at ?>
+            </div>
+          </div>
+
+          <? if (item.trimmed) { ?>
+          <div class="stack-trace-editor">
+            <pre class="line-numbers language-javascript" data-line="<?= item.trimmed.line ?>" data-start="<?= item.trimmed.start ?>"><code><?= item.code ?></code></pre>
+          </div>
+          <? } else { ?>
+          <div class="stack-trace-editor">
+            <pre class="line-numbers language-javascript" data-line="<?= item.line ?>"><code><?= item.code ?></code></pre>
+          </div>
+          <? } ?>
+
+
+          <? }); ?>
+        </div>
+        <? if(user !== null) { ?>
+        <div class="request variables">
+          <h3>User</h3>
+          <div class="table table--4cols table--collapse">
+            <? user.forEach(function(userItem) { ?>
+            <div class="table-cell table-cell--1of4 table-cell--head">
+              <?= userItem.key ?>
+            </div>
+            <div class="table-cell table-cell--3of4 table-cell--foot">
+              <? if(userItem.key === 'settings'){ ?>
+              <?= JSON.stringify(userItem.value) ?>
+              <? }else{ ?>
+              <?= userItem.value ?>
+              <? } ?>
+            </div>
+            <? }); ?>
+          </div>
+        </div>
+        <? } ?>
+
+        <? if(request) { ?>
+        <div class="request variables">
+          <h3>Request</h3>
+          <div class="table table--4cols table--collapse">
+            <? request.forEach(function(requestItem) { ?>
+            <div class="table-cell table-cell--1of4 table-cell--head">
+              <?= requestItem.key ?>
+            </div>
+            <div class="table-cell table-cell--3of4 table-cell--foot">
+              <?= requestItem.value ?>
+            </div>
+            <? }); ?>
+          </div>
+        </div>
+        <? } ?>
+
+        <? if(headers) { ?>
+        <div class="headers variables">
+          <h3>Headers</h3>
+          <div class="table table--4cols table--collapse">
+            <? headers.forEach(function(headerItem) { ?>
+            <div class="table-cell table-cell--1of4">
+              <?= headerItem.key ?>
+            </div>
+            <div class="table-cell table-cell--3of4 table-cell--foot">
+              <?= headerItem.value ?>
+            </div>
+            <? }); ?>
+          </div>
+        </div>
+        <? } ?>
+
+        <div class="environment variables">
+          <h3>Environment</h3>
+          <div class="table table--4cols table--collapse">
+            <? environment.forEach(function(item) { ?>
+            <div class="table-cell table-cell--1of4">
+              <?= item.key ?>
+            </div>
+            <div class="table-cell table-cell--3of4 table-cell--foot">
+              <?= item.value ?>
+            </div>
+            <? }); ?>
+          </div>
+        </div>
+      </article>
+      <aside>
+        <div style="border-right-color: #353537; border-right-width: 1px; border-right-style: solid; height: 100%">
+          &nbsp;
+        </div>
+      </aside>
+      <aside>
+        <h3>System</h3>
+        <dl>
+          <? proc.forEach(function(item) { ?>
+          <dt>
+            <?= item.key ?>
+          </dt>
+          <dd>
+            <?= item.value ?>
+          </dd>
+          <? }); ?>
+        </dl>
+      </aside>
+    </main>
+
+    <script>
+      <? - prismJS ?>
+    </script>
+    <script>
+        (function () {
+          console.log(JSON.parse('<?- JSON.stringify(config) ?>'))
+
+          console.log(<?- JSON.stringify(locals) ?>)
+
+          document.querySelectorAll('.open-in-code')
+            .forEach(el => {
+              el.addEventListener('click', (event) => {
+                event.stopPropagation()
+                console.log(event)
+
+              })
+            })
+
+          document.querySelectorAll('.stack-trace-line')
+            .forEach(el => {
+              el.addEventListener('click', (event) => {
+                var sibling = el.nextElementSibling
+
+                if (!sibling.classList.contains('stack-trace-editor'))
+                  return
+
+                if (sibling.classList.contains('stack-trace-editor-open'))
+                  return sibling.classList.toggle('stack-trace-editor-open')
+
+                const openEditors = document.getElementsByClassName('stack-trace-editor-open')
+                if (openEditors.length) {
+                  openEditors[0].className = 'stack-trace-editor'
+                }
+                sibling.classList.toggle('stack-trace-editor-open')
+
+              })
+            })
+        })()
+    </script>
+  </body>
+
+</html>

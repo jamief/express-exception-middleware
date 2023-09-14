@@ -1,0 +1,84 @@
+{
+  "name": "express-exception-middleware",
+  "type": "module",
+  "version": "1.0.0",
+  "author": "jamief",
+  "license": "MIT",
+  "description": "ExpressJS Exception Middleware for Development Mode",
+  "main": "./dist/middleware.cjs",
+  "module": "./dist/middleware.mjs",
+  "types": "./dist/middleware.d.ts",
+  "files":[
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/middleware.d.ts",
+      "import": "./dist/middleware.mjs",
+      "require": "./dist/middleware.cjs"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamief/express-exception-middleware.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jamief/express-exception-middleware/issues"
+  },
+  "homepage": "https://github.com/jamief/express-exception-middleware#readme",
+  "keywords": [
+    "boilerplate",
+    "typescript",
+    "release",
+    "swc"
+  ],
+  "scripts": {
+    "prepare": "husky install",
+    "start:cjs": "node ./dist/index.cjs",
+    "start:esm": "node ./dist/index.mjs",
+    "dev": "nodemon",
+    "develop": "node --loader ts-node/esm ./src/index.ts",
+    "clean": "rimraf build && rimraf dist",
+    "build": "swc ./src -d dist",
+    "build:watch": "swc ./src -d dist -w",
+    "lint": "eslint ./src --ext .ts",
+    "lint:fix": "eslint ./src --ext .ts --fix",
+    "type-check": "tsc --noEmit",
+    "lint-staged": "lint-staged",
+    "release": "semantic-release",
+    "bundle": "unbuild"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^10.0.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^9.0.0",
+    "@semantic-release/npm": "^10.0.3",
+    "@semantic-release/release-notes-generator": "^11.0.1",
+    "@swc/cli": "0.1.62",
+    "@swc/core": "^1.3.59",
+    "@swc/helpers": "^0.5.1",
+    "@swc/jest": "0.2.29",
+    "@types/ejs": "^3.1.2",
+    "@types/express": "^4.17.17",
+    "@types/node": "18.17.5",
+    "@typescript-eslint/eslint-plugin": "6.3.0",
+    "@typescript-eslint/parser": "6.3.0",
+    "ejs": "^3.1.9",
+    "eslint": "8.47.0",
+    "eslint-plugin-html": "^7.1.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
+    "nodemon": "3.0.1",
+    "regenerator-runtime": "^0.14.0",
+    "rimraf": "5.0.1",
+    "semantic-release": "^21.0.2",
+    "source-map": "^0.7.4",
+    "ts-node": "^10.9.1",
+    "typescript": "5.1.6",
+    "unbuild": "^1.2.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

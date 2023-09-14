@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "rootDir": "./src",
+    "declaration": true,
+    "outDir": "./build",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "ts-node": {
+    "swc": true,
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
+}
