@@ -6,6 +6,7 @@ import { SourceMapConsumer } from 'source-map'
 import type { NextFunction, Request, Response } from 'express'
 import util from './util.js'
 import type { OptionsInterface, ResultInterface } from './types.js'
+import type { SourceMapPayload } from 'node:module'
 
 const TEMPLATE_PATH = path.join(__dirname, './views/error.html')
 const template = fs.readFileSync(TEMPLATE_PATH).toString()
@@ -19,19 +20,19 @@ function parseSourceMap(input: ResultInterface): ResultInterface {
   const match = util.getLastLine(code).match(SOURCEMAP_REGEX)
 
   if (match) {
-    let sm: any
+    let sourceMapData: SourceMapPayload
     const dirName = path.dirname(input.path)
     const sourceMapLocation = path.join(dirName, match[1])
 
     try {
-      sm = JSON.parse(fs.readFileSync(sourceMapLocation) as any)
+      sourceMapData = JSON.parse(fs.readFileSync(sourceMapLocation) as any)
     } catch (err) {
       console.error([`Unable to locate sourcemap at ${sourceMapLocation}`].join('\n'))
       return result
     }
 
-    const sources = sm.sources.map(util.stripProtocol)
-    const sourceMap = new SourceMapConsumer(sm)
+    const sources = sourceMapData.sources.map(util.stripProtocol)
+    const sourceMap = new SourceMapConsumer(sourceMapData)
 
     const original = (sourceMap as any).originalPositionFor({
       line: input.line,
@@ -43,17 +44,11 @@ function parseSourceMap(input: ResultInterface): ResultInterface {
       const index = util.indexOfEndsWith(source, sources)
 
       if (index < 0) {
-        console.error(
-          [
-            'Something is off with the sourcemap',
-            `Can not find source of '${source}' in your sourcemap`,
-            '',
-          ].join('\n')
-        )
+        console.error(`Can not find source of '${source}' in your sourcemap`)
         return result
       }
 
-      const originalCode = sm.sourcesContent[index]
+      const originalCode = sourceMapData.sourcesContent[index]
 
       result.code = originalCode
       result.path = original.source
@@ -109,7 +104,9 @@ function parseErrorStack(disableSourceMapSupport: boolean, error: Error) {
 }
 
 class DebuggerUtils {
+  
   public config: OptionsInterface
+
   constructor(config: OptionsInterface) {
     this.config = config
   }
@@ -178,7 +175,7 @@ export default function main(opts: OptionsInterface, error: Error, req: Request,
     },
   }
 
-  console.error(rawError.join('\n'), "\n")
+  // console.error(rawError.join('\n'), "\n")
   try {
     return renderTemplate(data)
   } catch(e) {
