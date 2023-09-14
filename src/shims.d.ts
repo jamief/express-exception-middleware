@@ -1,11 +1,11 @@
 declare global {
-    namespace Express {
-        interface AuthInfo {}
-        interface User {}
-        interface Request {
-            user?: User | undefined;
-        }
+  namespace Express {
+    interface AuthInfo {}
+    interface User {}
+    interface Request {
+      user?: User | undefined;
     }
+  }
 }
 
 export {}

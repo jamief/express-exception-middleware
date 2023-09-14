@@ -20,4 +20,4 @@ jobs:
       - name: Bundle
         run: npm run bundle
       - name: Release
-        run: npm release
+        run: npm run release
