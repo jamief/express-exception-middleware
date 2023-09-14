@@ -150,14 +150,10 @@
     </main>
 
     <script>
-      <? - prismJS ?>
+      <?- prismJS ?>
     </script>
     <script>
         (function () {
-          console.log(JSON.parse('<?- JSON.stringify(config) ?>'))
-
-          console.log(<?- JSON.stringify(locals) ?>)
-
           document.querySelectorAll('.open-in-code')
             .forEach(el => {
               el.addEventListener('click', (event) => {
