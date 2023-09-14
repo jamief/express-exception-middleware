@@ -159,7 +159,7 @@ export default function main(opts: OptionsInterface, error: Error, req: Request,
   const utils = new DebuggerUtils(opts)
 
   const data = {
-    prismJS: fs.readFileSync(path.join(__dirname, './prism/prism.js')),
+    prismJS: fs.readFileSync(path.join(__dirname, './assets/prism.js')),
     config: opts,
     stack,
     errorStack: rawError.join('\n'),

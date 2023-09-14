@@ -18,7 +18,8 @@ export default defineBuildConfig({
       builder: "mkdist",
       input: "./src/assets",
       outDir: "./dist/assets",
-      declaration: false
+      declaration: false,
+      ext: "js"
     },
   ],
 })
