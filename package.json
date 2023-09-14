@@ -1,7 +1,7 @@
 {
   "name": "express-exception-middleware",
   "type": "module",
-  "version": "1.0.0-beta",
+  "version": "1.0.0",
   "author": "jamief",
   "license": "MIT",
   "description": "ExpressJS Exception Middleware for Development Mode",
@@ -11,6 +11,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "tag": "latest"
+  },
   "exports": {
     ".": {
       "types": "./dist/middleware.d.ts",
