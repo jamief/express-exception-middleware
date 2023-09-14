@@ -18,6 +18,6 @@ jobs:
       - name: Install
         run: npm install --frozen-lockfile
       - name: Bundle
-        run: npm bundle
+        run: npm run bundle
       - name: Release
         run: npm release

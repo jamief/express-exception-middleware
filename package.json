@@ -8,7 +8,7 @@
   "main": "./dist/middleware.cjs",
   "module": "./dist/middleware.mjs",
   "types": "./dist/middleware.d.ts",
-  "files":[
+  "files": [
     "dist"
   ],
   "exports": {
