@@ -31,7 +31,7 @@ jobs:
         run: npm audit signatures
       - name: Bundle
         run: npm run bundle
-      - name: Release
+      - name: Publish to NPM
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
