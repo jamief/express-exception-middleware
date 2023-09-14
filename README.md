@@ -4,6 +4,8 @@ This is an Express.js middleware for handling exceptions in development mode.
 
 It provides a customizable error page with detailed debugging information like stack trace, request details, environment variables, etc.
 
+**Currently in beta mode**
+
 Getting Started
 
 Clone the repository and install dependencies:

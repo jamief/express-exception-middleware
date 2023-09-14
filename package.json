@@ -1,7 +1,7 @@
 {
   "name": "express-exception-middleware",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.0-beta",
   "author": "jamief",
   "license": "MIT",
   "description": "ExpressJS Exception Middleware for Development Mode",
