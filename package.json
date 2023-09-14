@@ -2,7 +2,11 @@
   "name": "express-exception-middleware",
   "type": "module",
   "version": "1.0.0",
-  "author": "jamief",
+  "author": {
+    "email": "jamfeadev@gmail.com",
+    "name": "Jamie F",
+    "url": "https://jamief.dev"
+  },
   "license": "MIT",
   "description": "ExpressJS Exception Middleware for Development Mode",
   "main": "./dist/middleware.cjs",
