@@ -1,7 +1,7 @@
 {
   "name": "express-exception-middleware",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": {
     "email": "jamfeadev@gmail.com",
     "name": "Jamie F",
