@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/jamief/express-exception-middleware/compare/v1.0.2...v1.1.0) (2023-09-15)
+
+
+### Features
+
+* added inline css ([41a28f8](https://github.com/jamief/express-exception-middleware/commit/41a28f862dc421149a206b94935e0b4887d60e62))
+
 ## [1.0.2](https://github.com/jamief/express-exception-middleware/compare/v1.0.1...v1.0.2) (2023-09-14)
 
 
