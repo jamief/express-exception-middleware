@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express'
-import type { OptionsInterface } from './types.js'
-import main from './index.js'
+import type { OptionsInterface } from './types'
+import main from './index'
 
 export default function debugMiddleware(options?: OptionsInterface) {
   const defaultOptions: OptionsInterface = {

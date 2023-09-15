@@ -4,8 +4,8 @@ import process from 'node:process'
 import ejs from 'ejs'
 import { SourceMapConsumer } from 'source-map'
 import type { NextFunction, Request, Response } from 'express'
-import util from './util.js'
-import type { OptionsInterface, ResultInterface } from './types.js'
+import util from './util'
+import type { OptionsInterface, ResultInterface } from './types'
 import type { SourceMapPayload } from 'node:module'
 
 const TEMPLATE_PATH = path.join(__dirname, './views/error.html')
@@ -158,8 +158,15 @@ export default function main(opts: OptionsInterface, error: Error, req: Request,
 
   const utils = new DebuggerUtils(opts)
 
+  const prismJS = fs.readFileSync(path.join(__dirname, './assets/prism.js'))
+  const styleSheet = fs.readFileSync(path.join(__dirname, './assets/style.css'))
+  const prismStyleSheet = fs.readFileSync(path.join(__dirname, './assets/onedark.css'))
+
+
   const data = {
-    prismJS: fs.readFileSync(path.join(__dirname, './assets/prism.js')),
+    prismJS,
+    styleSheet,
+    prismStyleSheet,
     config: opts,
     stack,
     errorStack: rawError.join('\n'),

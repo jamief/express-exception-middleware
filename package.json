@@ -1,6 +1,5 @@
 {
   "name": "express-exception-middleware",
-  "type": "module",
   "version": "1.0.2",
   "author": {
     "email": "jamfeadev@gmail.com",
@@ -18,13 +17,6 @@
   "publishConfig": {
     "tag": "latest"
   },
-  "exports": {
-    ".": {
-      "types": "./dist/middleware.d.ts",
-      "import": "./dist/middleware.mjs",
-      "require": "./dist/middleware.cjs"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jamief/express-exception-middleware.git"
@@ -34,10 +26,10 @@
   },
   "homepage": "https://github.com/jamief/express-exception-middleware#readme",
   "keywords": [
-    "boilerplate",
-    "typescript",
-    "release",
-    "swc"
+    "express",
+    "middleware",
+    "error-handling",
+    "exception"
   ],
   "scripts": {
     "prepare": "husky install",
@@ -46,7 +38,7 @@
     "dev": "nodemon",
     "develop": "node --loader ts-node/esm ./src/index.ts",
     "clean": "rimraf build && rimraf dist",
-    "build": "swc ./src -d dist",
+    "build": "npm run clean && swc ./src -d dist",
     "build:watch": "swc ./src -d dist -w",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "eslint ./src --ext .ts --fix",

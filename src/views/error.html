@@ -11,9 +11,10 @@
       <?= exception.name ?> - Exception Page
     </title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;800&display=swap" rel="stylesheet" />
-    <link href="/assets/css/okaidia.css" rel="stylesheet">
-    <link href="/assets/css/style.css" rel="stylesheet">
-    <?= (typeof styleSheet != "undefined" ? styleSheet : "") ?>
+    <style>
+      <?- (typeof styleSheet !="undefined" ? styleSheet : "") ?>
+      <?- (typeof prismStyleSheet !="undefined" ? prismStyleSheet : "") ?>
+    </style>
   </head>
 
   <body>
@@ -154,16 +155,12 @@
     </script>
     <script>
         (function () {
-          document.querySelectorAll('.open-in-code')
-            .forEach(el => {
-              el.addEventListener('click', (event) => {
-                event.stopPropagation()
-                console.log(event)
+          document
+            .querySelectorAll('.open-in-code')
+            .forEach(el => el.addEventListener('click', (event) => event.stopPropagation()))
 
-              })
-            })
-
-          document.querySelectorAll('.stack-trace-line')
+          document
+            .querySelectorAll('.stack-trace-line')
             .forEach(el => {
               el.addEventListener('click', (event) => {
                 var sibling = el.nextElementSibling
@@ -175,9 +172,11 @@
                   return sibling.classList.toggle('stack-trace-editor-open')
 
                 const openEditors = document.getElementsByClassName('stack-trace-editor-open')
+                
                 if (openEditors.length) {
                   openEditors[0].className = 'stack-trace-editor'
                 }
+
                 sibling.classList.toggle('stack-trace-editor-open')
 
               })
