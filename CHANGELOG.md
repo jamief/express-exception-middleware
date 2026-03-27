@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/jamief/express-exception-middleware/compare/v1.1.0...v1.1.1) (2026-03-27)
+
+
+### Bug Fixes
+
+* Merge pull request [#15](https://github.com/jamief/express-exception-middleware/issues/15) from jamief/dependabot/npm_and_yarn/multi-7006da27c5 ([8b4df10](https://github.com/jamief/express-exception-middleware/commit/8b4df1000a1d4a353685353d14eef85f14cf7bb1))
+
 # [1.1.0](https://github.com/jamief/express-exception-middleware/compare/v1.0.2...v1.1.0) (2023-09-15)
 
 
